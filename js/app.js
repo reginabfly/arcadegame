@@ -1,17 +1,17 @@
 // Enemies our player must avoid
-let Enemy = function(x, y, speed) {
+let Enemy = function (x, y, speed) {
     // Variables applied to each of our instances go here,
     this.x = x;
     this.y = y;
     //randomly sets speed for enemy bugs
-    this.speed = Math.floor((Math.random()*200)+125);
+    this.speed = Math.floor((Math.random() * 200) + 125);
     //enemy image
     this.sprite = 'images/enemy-bug.png';
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+Enemy.prototype.update = function (dt) {
     //multiply by dt to have game run at same speed on all computers
     if (this.x < 500) {
         this.x += this.speed * dt;
@@ -28,7 +28,7 @@ Enemy.prototype.update = function(dt) {
 };
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
+Enemy.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -52,48 +52,50 @@ Player.prototype.render = function () {
 }
 
 Player.prototype.handleInput = function (keyPress) {
-        if (keyPress == 'left') {
-            this.x -= 100;
-        }
-        if (keyPress == 'right') {
-            this.x +=100;
-        }
-        if (keyPress == 'up') {
-            this.y -= 90;
-        }
-        if (keyPress === 'down') {
-            this.y += 90;
-        }
-        //if player reaches top send back to start position
-        //update score
-        if(this.y <= 0) {
-            this.reset();
-        }
-        //keeps player on the board
-        if(this.x < 0) {
-            this.x = 0;
-        }
-        //keeps player on the board
-        if(this.y > 400) {
-            this.y = 400;
-        }
-        //keeps player on the board
-        if(this.x > 400) {
-            this.x = 400;
-        }
+    if (keyPress == 'left') {
+        this.x -= 100;
     }
+    if (keyPress == 'right') {
+        this.x += 100;
+    }
+    if (keyPress == 'up') {
+        this.y -= 90;
+    }
+    if (keyPress === 'down') {
+        this.y += 90;
+    }
+    //if player reaches top send back to start position
+    //update score
+    if (this.y <= 0) {
+        this.reset();
+    }
+    //keeps player on the board
+    if (this.x < 0) {
+        this.x = 0;
+    }
+    //keeps player on the board
+    if (this.y > 400) {
+        this.y = 400;
+    }
+    //keeps player on the board
+    if (this.x > 400) {
+        this.x = 400;
+    }
+}
 
+//score keeper variables
 let scoreTracker = 0;
 let score = document.querySelector("span");
+
 //Reset player to beginning position
-Player.prototype.reset = function() {
+Player.prototype.reset = function () {
     this.x = 200;
     this.y = 400;
     scoreTracker++;
     score.innerHTML = scoreTracker;
 };
-    
-//this function will DISPLAY Enemies:
+
+//this function will display enemies:
 let bug1 = new Enemy(0, 50, 100);
 let bug2 = new Enemy(0, 140, 100);
 let bug3 = new Enemy(0, 230, 100);
@@ -103,7 +105,7 @@ let allEnemies = [bug1, bug2, bug3];
 let player = new Player(200, 400, 100);
 
 //This function listens for key presses and sends to Player.handleInput() method.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', function (e) {
     let allowedKeys = {
         37: 'left',
         38: 'up',
