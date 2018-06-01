@@ -22,6 +22,8 @@ Enemy.prototype.update = function(dt) {
     if (((this.y > player.y) && (this.y < player.y + 30)) && ((this.x > player.x - 60) && (this.x < player.x + 50))) {
         player.x = 200;
         player.y = 400;
+        scoreTracker--;
+        score.innerHTML = scoreTracker;
     }
 };
 
@@ -63,7 +65,8 @@ Player.prototype.handleInput = function (keyPress) {
             this.y += 90;
         }
         //if player reaches top send back to start position
-        if(this.y < 0) {
+        //update score
+        if(this.y <= 0) {
             this.reset();
         }
         //keeps player on the board
@@ -80,10 +83,14 @@ Player.prototype.handleInput = function (keyPress) {
         }
     }
 
+let scoreTracker = 0;
+let score = document.querySelector("span");
 //Reset player to beginning position
 Player.prototype.reset = function() {
-   this.x = 200;
-   this.y = 400;
+    this.x = 200;
+    this.y = 400;
+    scoreTracker++;
+    score.innerHTML = scoreTracker;
 };
     
 //this function will DISPLAY Enemies:

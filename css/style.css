@@ -5,3 +5,15 @@ body {
     background: linear-gradient(to right, #86fde8, #acb6e5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
 }
+
+.score-board {
+    width: 300px;
+    height: 40px;
+    font-size: 2em;
+    margin: 0 auto -40px;
+    text-align: center;
+    padding: 10px;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    background-color: white;
+}
